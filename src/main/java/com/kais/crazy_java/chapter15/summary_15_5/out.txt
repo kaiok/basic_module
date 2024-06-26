@@ -1,0 +1,2 @@
+普通字符串
+com.kais.crazy_java.chapter15.summary_15_5.RedirectOut@5f205aa

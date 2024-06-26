@@ -1,0 +1,46 @@
+Java IO四大基类，处理流即包装节点流后的流
+    FileInputStream、FileReader：输入流
+    FIleOutputStream、FileWriter：输出流
+Java IO流分类
+  按流的流向
+    输入流：只能从中读取数据，不能写入数据（输入的时候，不断的从源读取数据）
+    输出流：只能向其写入数据，而不能从中读取数据
+    值得注意的是：流的流向是以内存的角度来看待的，
+        1.数据从内存写入硬盘，我们称为输出流，反之为输入流
+        2.数据从服务器通过网络流向客户端，这种情况下，Server端的内存负责将数据输出到网络中，因此Server端的程序使用输出流；
+            Client端的内存负责从网络中读取数据，因此Client端的程序使用的是输入流
+  字节流与字符流
+    字节流操作的数据单元是8位字节，字符流操作数据单元是16为字符
+    字节流主要是InputStream和OutputStream作为基类，字符流则由Reader和Writer作为基类
+  节点流和处理流
+    节点流：输入节点与输出节点直接进行连接，数据传输
+    处理流：用于对一个已存在的流进行连接或封装，通过封装后的流来实现数据读/写功能，也称为高级流
+
+为什么要将此数组初始化为1024？
+    这称为缓冲,每次在每次循环时都覆盖缓冲区的内容.
+    只需以块的形式读取文件,而不是一次为文件内容分配内存
+
+JavaIO.png：java流的嫁接
+
+FilenameFilter:过滤文件
+
+summary_15_3：输入输入流4大基类的使用
+
+StringNodeTest：字符数组流的使用
+
+KeyInTest：转换System.in输入流为BufferedReader，实现读取用户通过键盘键入的每一行字符串内容
+
+PushbackTest：推回输入/输出流，找出文件中"new_PushbackReader"内容，找到后只打印目标字符串之前的内容
+
+RedirectOut:将System.out（屏幕输出）重定向到输出到目录文件中
+RedirectIn:将System.in重定向到从指定文件，而不是键盘输入
+
+java虚拟机读取其它进程的数据：summary_15_6
+
+RandomAccessFileTest\AppendContent:随机/任意访问
+
+Java9改进的对象序列化:
+    WriteObject:将实现序列化的JavaBean对象输出到txt文件中
+    ReadObject:通过反序列化，从二进制流中恢复java对象，并进行打印
+
+    Teacher：对象引用的序列化

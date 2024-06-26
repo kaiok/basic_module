@@ -1,0 +1,32 @@
+InetAddress：InetAddress常用方法测试
+
+MultiThreadDown：实现从目标主机指定路径，下载文件到服务器
+
+GetPostTest：GEP和POST请求的编码方式
+
+--------------------
+创建一个和URL之间的连接，并发送请求、读取此URL引用的资源，步骤如下
+1-通过调用URL对象的openConnection()方法创建URLConnection对象
+        var url = new URL(path);
+        // 返回一个URLConnection对象，代表了与URL所引用的远程对象的连接
+        var conn = (HttpURLConnection) url.openConnection();
+2-设置URLConnection的参数和普通请求属性
+        conn.setConnectTimeout(5 * 1000);
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty(
+                "Accept",
+                "image/gif, image/jpeg, image/pjpeg, image/pjpeg, "
+                        + "application/x-shockwave-flash, application/xaml+xml, "
+                        + "application/vnd.ms-xpsdocument, application/x-ms-xbap, "
+                        + "application/x-ms-application, application/vnd.ms-excel, "
+                        + "application/vnd.ms-powerpoint, application/msword, */*");
+        conn.setRequestProperty("Accept-Language", "zh-CN");
+        conn.setRequestProperty("Charset", "UTF-8");
+        conn.setRequestProperty("Connection", "Keep-Alive");
+3-GET请求：使用connect()方法建立和远程资源之间的实际连接
+
+3-POST请求：获取URLConnection实例对应的输出流来发送请求参数
+
+4-远程资源变为可用，程序可以访问远程资源的头字段或通过输入流读取远程资源的数据
+-----------------------
+Server、Client：通过ServerSocket和Socket建立连接，并通过底层IO流进行通讯（此时通过网络进行通讯与普通IO就没有其它区别了）

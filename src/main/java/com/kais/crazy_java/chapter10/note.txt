@@ -1,0 +1,12 @@
+FinallyTest：finally中的代码块优先与catch中的return语句执行
+    注意在try/catch代码块中执行推出虚拟机语句----System.exit(1);，否则finally中的代码一定会执行
+
+FinallyFlowTest：注意，不要在finally中执行return/throw语句，否则会导致try/catch中的return代码得不到执行
+
+ThrowsTest2：使用throws抛出异常
+
+OverrideThrows：子类继承父类重写的方法抛出的异常不允许比父类方法抛出的异常多（大）
+
+AuctionTest：catch和throw共同食用，效果更佳
+
+PrintStackTraceTest：异常跟踪栈

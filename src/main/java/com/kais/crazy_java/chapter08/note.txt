@@ -1,0 +1,13 @@
+IteratorTest:迭代器
+
+ForeachTest:foreach测试
+
+PredicateTest：removeIf测试
+
+PredicateTest2：Predicate的使用
+
+CollectionStream：使用stream对predicate进行升级
+
+TreeSetTest：TreeSet测试
+
+

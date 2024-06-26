@@ -1,0 +1,16 @@
+    当创建带泛型声明的接口、父类之后，可以为该接口创建实现类，或从该父类派生子类。但是，当使用这些接口、父类时
+不能再包含泛型形参
+//定义类A继承Apple类，Apple类不能跟泛型行参
+public class A extends Apple<T>{} //❌，错误写法
+public class A extends Apple<String>{}//正确写法
+public class A extends Apple{}//当然，不指明泛型参数也是可以的，这种父类类型成为原始类型
+
+TestClass：不存在泛型类，下面四个对象都是相同的类对象
+        ArrayList<String> objects = new ArrayList<>();
+        ArrayList<Integer> objects1 = new ArrayList<>();
+        ArrayList<Cat> objects3 = new ArrayList<>();
+        ArrayList<Dog> objects4 = new ArrayList<>();
+public class R<T>{}:
+    静态（方法、初始化块、常量）中不允许使用泛型：
+        泛型在对象创建时才知道是什么类型，但是静态方法属于类，调用test方法实际调用的Persion类的方法，而类在编译阶段就存在了，
+        所以虚拟机根本不知道方法中引用的泛型是什么类型

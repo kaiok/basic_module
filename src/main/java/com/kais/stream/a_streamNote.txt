@@ -1,0 +1,65 @@
+java8中的stream处理List、Map
+
+---------------------
+Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。
+Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。
+Stream API可以极大提高Java程序员的生产力，让程序员写出高效率、干净、简洁的代码。
+这种风格将要处理的元素集合看作一种流， 流在管道中传输， 并且可以在管道的节点上进行处理， 比如筛选， 排序，聚合等。
+元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作(terminal operation)得到前面处理的结果
+-----------------------
+Stream
+    1:Lambda
+Lambda与匿名内部类的区别：匿名内部类在编译之后会创建一个新的匿名内部类出来，而Lambda是调用invokedynamic指令实现的，不会产生新类
+    2:方法引用（Method references）
+    /projects/AppleProject/basic_module/src/main/java/com/kais/stream/FunctionTest.java
+    3:常用API
+    /Users/kais/projects/AppleProject/basic_module/src/main/java/com/kais/stream/Stream02_UsefulMethods.java
+Stream 是 Java 8 中集合数据处理的利器，很多本来复杂、需要写很多代码的方法，比如过滤、分组等操作，往往使用 Stream 就可以在一行代码搞定，
+    当然也因为 Stream 都是链式操作，一行代码可能会调用好几个方法
+Collection接口提供了 stream()方法，让我们可以在一个集合方便的使用 Stream API 来进行各种操作。值得注意的是，
+    我们执行的任何操作都不会对源集合造成影响，你可以同时在一个集合上提取出多个 stream 进行操作。
+我们看 Stream 接口的定义，继承自 BaseStream，几乎所有的接口声明都是接收方法引用类型的参数，比如 filter方法，
+    接收了一个 Predicate类型的参数，它就是一个函数式接口，常用来作为条件比较、筛选、过滤用，JPA中也使用了这个函数式接口用来做查询条件拼接
+---------------------------
+Stream常用API：
+    of:可接收一个泛型对象或可变成泛型集合，构造一个 Stream 对象
+
+    empty:创建一个空的 Stream 对象
+
+    concat:连接两个 Stream ，不改变其中任何一个 Steam 对象，返回一个新的 Stream 对象
+
+    filter:
+
+    distinct,sorted,
+
+    peek：建立一个通道，在这个通道中对 Stream 的每个元素执行对应的操作，对应 Consumer<T>的函数式接口，这是一个消费者函数式接口，顾名思义，它是用来消费 Stream 元素的，比如下面这个方法，把每个元素转换成对应的大写字母并输出
+
+    limit:获取前 n 条数据，类似于 MySQL 的limit，只不过只能接收一个参数，就是数据条数
+
+    skip,
+
+    forEach:和 peek 方法类似，都接收一个消费者函数式接口，可以对每个元素进行对应的操作，但是和 peek 不同的是，forEach 执行之后，这个 Stream 就真的被消费掉了，之后这个 Stream 流就没有了，不可以再对它进行后续操作了，而 peek操作完之后，还是一个可操作的 Stream 对象。
+            正好借着这个说一下，我们在使用 Stream API 的时候，都是一串链式操作，这是因为很多方法，比如接下来要说到的 filter方法等，返回值还是这个 Stream 类型的，也就是被当前方法处理过的 Stream 对象，所以 Stream API 仍然可以使用
+
+    forEachOrdered:功能与 forEach是一样的，不同的是，forEachOrdered是有顺序保证的，也就是对 Stream 中元素按插入时的顺序进行消费。为什么这么说呢，当开启并行的时候，forEach和 forEachOrdered的效果就不一样了
+
+    toArray,reduce,collect,
+
+    min,max:查找最大最小值
+
+    count:返回元素个数
+
+    anyMatch,
+
+    findFirst:获取 Stream 中的第一个元素
+
+    findAny:获取 Stream 中的某个元素，如果是串行情况下，一般都会返回第一个元素，并行情况下就不一定了
+
+    Map集合：map,mapToInt,mapToLong,mapToDouble,flatmapToInt,flatMapToInt,flatMapToLong,flatMapToDouble
+/Users/kais/projects/AppleProject/basic_module/src/main/java/com/kais/stream/Stream03_Map.java
+
+collection
+    在进行了一系列操作之后，我们最终的结果大多数时候并不是为了获取 Stream 类型的数据，而是要把结果变为 List、Map
+        这样的常用数据结构，而 collection就是为了实现这个目的
+    就拿 map 方法的那个例子说明，将对象类型进行转换后，最终我们需要的结果集是一个 List<UserDto >类型的，使用 collect方法将
+        Stream 转换为我们需要的类型

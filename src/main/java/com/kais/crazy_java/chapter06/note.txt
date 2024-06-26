@@ -1,0 +1,34 @@
+SeasonEnum,EnumTest,Gender:枚举类的使用
+
+better.Gender：枚举中封装的使用
+
+GenderDesc：实现接口的枚举类
+
+Operation：包含抽象方法的枚举类
+
+FinalizeTest：对象的可恢复状态-->可达状态（GC-6_10）
+
+ReferenceTest：弱引用
+
+PhantomReferenceTest：虚引用
+
+ScannerFileTest：Scanner读取文件内容
+
+IdentityHashCodeTest：对象的唯一标识IdentityHashCode
+
+CloneTest：对象的自我克隆
+    实现Cloneable接口
+
+BigDecimalTest：有关0.001 + 0.005 != 0.006的问题
+
+Arith：算数计算工具类
+
+CalendarTest：日期时间测试
+
+NewDatePackageTest：Clock，新的日期工具类
+
+summary_7_5(FindGroup,StartEnd)：正则表达式（字符串处理工具）的使用
+
+MethodHandleTest：Java9增强的MethodHandle
+
+国际化：P584
